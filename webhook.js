@@ -7,6 +7,10 @@ require('dotenv').config()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+
+app.get('/', async (req, res) => {
+    res.send('Hello')
+})
 app.post('/payload', async (req, res) => {
     let data = req.body ? req.body : ''
 
@@ -22,10 +26,17 @@ app.post('/payload', async (req, res) => {
 
         if (runStdout) {
             console.log(runStdout)
+	    res.status(200)
         } else {
             console.log(runStderr)
+            res.status(500)
         }
-    }
+    } else {
+    	console.log('received non-main trigger')
+	res.status(200)
+}
 })
 
-app.listen(4567)
+app.listen(4567, () => {
+	console.log('server listening for hooks')
+})
