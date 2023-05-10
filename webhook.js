@@ -26,17 +26,17 @@ app.post('/payload', async (req, res) => {
 
         if (runStdout) {
             console.log(runStdout)
-	    res.status(200)
+            res.status(200).send('Received and built!')
         } else {
             console.log(runStderr)
-            res.status(500)
+            res.status(500).send('Something went wrong!')
         }
     } else {
-    	console.log('received non-main trigger')
-	res.status(200)
-}
+        console.log('received non-main trigger')
+        res.status(200).send('Received!')
+    }
 })
 
 app.listen(4567, () => {
-	console.log('server listening for hooks')
+    console.log('server listening for hooks')
 })
