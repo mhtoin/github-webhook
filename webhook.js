@@ -38,5 +38,5 @@ app.post('/payload', async (req, res) => {
 })
 
 app.listen(4567, () => {
-    console.log('server listening for hooks')
+    console.log(`Server listening for hooks ${new Date()}`)
 })
